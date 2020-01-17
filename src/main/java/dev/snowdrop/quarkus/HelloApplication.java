@@ -1,9 +1,8 @@
 package dev.snowdrop.quarkus;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -17,7 +16,9 @@ import javax.ws.rs.core.MediaType;
 @RequestMapping("/hello")
 public class HelloApplication {
 
-    public HelloApplication() { }
+    public HelloApplication(HelloService helloService) {
+        this.helloService = helloService;
+    }
 
     /*
     @Inject
@@ -30,4 +31,12 @@ public class HelloApplication {
         return helloService.politeHello(name);
     }
     */
+
+    @Autowired
+    HelloService helloService;
+
+    @GetMapping("/{name}")
+    public HelloService.Greeting greeting(@PathVariable("name") String idName) {
+        return helloService.politeHello(idName);
+    }
 }
