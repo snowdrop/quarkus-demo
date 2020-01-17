@@ -8,9 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 //@ApplicationScoped
 public class HelloService {
+    /*
+    @ConfigProperty(name = "greeting")
+    private String greeting;
 
-    //@ConfigProperty(name = "greeting")
-    //private String greeting;
+    public String politeHello(String name){
+        return "Hello Mr/Mrs " + name;
+    }
+    */
 
     @GetMapping("/{name}")
     public Greeting politeHello(String name){
@@ -29,10 +34,4 @@ public class HelloService {
             return message;
         }
     }
-
-   /*
-   public String politeHello(String name){
-        return "Hello Mr/Mrs " + name;
-    }
-    */
 }

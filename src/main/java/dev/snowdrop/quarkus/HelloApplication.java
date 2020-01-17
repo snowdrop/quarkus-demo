@@ -16,7 +16,8 @@ import javax.ws.rs.core.MediaType;
 @RequestMapping("/hello")
 public class HelloApplication {
 
-/*    @Inject
+    /*
+    @Inject
     HelloService helloService;
 
     @GET
@@ -24,5 +25,6 @@ public class HelloApplication {
     @Path("/polite/{name}")
     public String greeting(@PathParam("name") String name) {
         return helloService.politeHello(name);
-    }*/
+    }
+    */
 }
