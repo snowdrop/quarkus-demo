@@ -1,5 +1,6 @@
 package dev.snowdrop.quarkus;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,7 +14,10 @@ import javax.ws.rs.core.MediaType;
 
 //@Path("/hello")
 @RestController
+@RequestMapping("/hello")
 public class HelloApplication {
+
+    public HelloApplication() { }
 
     /*
     @Inject

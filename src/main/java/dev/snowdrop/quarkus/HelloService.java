@@ -3,11 +3,13 @@ package dev.snowdrop.quarkus;
 //import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+//import javax.enterprise.context.ApplicationScoped;
 //import javax.enterprise.context.ApplicationScoped;
 
 //@ApplicationScoped
-@RequestMapping("/hello")
+@RestController
 public class HelloService {
     /*
     @ConfigProperty(name = "greeting")
@@ -19,9 +21,9 @@ public class HelloService {
     */
 
     @GetMapping("/{name}")
-    public Greeting politeHello(String name){
+    public HelloService.Greeting politeHello(String name){
         //return greeting + " " + name;
-        return new Greeting("hello" + name);
+        return new HelloService.Greeting("hello" + name);
     }
 
     public static class Greeting {
