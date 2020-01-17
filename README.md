@@ -10,6 +10,7 @@ mvn io.quarkus:quarkus-maven-plugin:1.1.1.Final:create \
     -Dpath="/hello"
 ```
 - Move to the project. Explore the Java class created
+- Rename `HelloResource` to `HelloApplication`
 - Launch it 
 ```bash
 ./mvnw compile quarkus:dev:
@@ -80,4 +81,12 @@ docker run -i --rm -p 8080:8080 quarkus/quarkus-demo
     </dependency>
 ```
 
-- Add a Restcontroller, 
+- Add a `@Restcontroller` to the class `HelloApplication`, @RequestMapping("/hello")
+- Build and curl
+```bash
+./mvnw clean compile quarkus:dev     
+http -s solarized :8080/hello/Charles                           
+HTTP/1.1 404 Not Found
+Content-Length: 0
+Content-Type: application/json
+```
