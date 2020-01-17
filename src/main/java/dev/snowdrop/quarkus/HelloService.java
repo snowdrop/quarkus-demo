@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 //import javax.enterprise.context.ApplicationScoped;
 
 //@ApplicationScoped
+@RequestMapping("/hello")
 public class HelloService {
     /*
     @ConfigProperty(name = "greeting")

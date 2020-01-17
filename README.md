@@ -1,30 +1,83 @@
-# quarkus-project project
+## Cool Quarkus demo
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
-
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
-
-## Running the application in dev mode
-
-You can run your application in dev mode that enables live coding using:
+- Steps to execute to create the project
+```bash
+mkdir demo && cd demo
+mvn io.quarkus:quarkus-maven-plugin:1.1.1.Final:create \
+    -DprojectGroupId=dev.snowdrop.quarkus \
+    -DprojectArtifactId=quarkus-project \
+    -DclassName="dev.snowdrop.quarkus.HelloResource" \
+    -Dpath="/hello"
 ```
-./mvnw quarkus:dev
+- Move to the project. Explore the Java class created
+- Launch it 
+```bash
+./mvnw compile quarkus:dev:
+```
+- Our REST endpoint should be exposed at `localhost:8080/hello`. Let's test it with the curl command
+```bash
+http localhost:8080/hello
+```
+- Demo about Hot reload ;-)
+- Create a new Java Class `HelloService`
+```java
+@ApplicationScoped
+public class HelloService {
+    public String politeHello(String name){
+        return "Hello Mr/Mrs " + name;
+    }
+}
+```
+- Modify the existing `HelloResource.java` class
+```java
+@Inject
+HelloService helloService;
+ 
+@GET
+@Produces(MediaType.APPLICATION_JSON)
+@Path("/polite/{name}")
+public String greeting(@PathParam("name") String name) {
+    return helloService.politeHello(name);
+}
+```
+- Next, let's test our new endpoint:
+```
+$  http localhost:8080/hello/polite/Charles -s solarized
+```
+- Edit the `application.properties` file
+```
+greeting=Good morning
+```
+- After that, we'll modify the HelloService to use our new property
+```java
+
+```
+- We can easily package the application by running:
+```bash
+./mvnw package -DskipTests=true
+```
+- Build it natively (or using docker image)
+```bash
+./mvnw package -DskipTests=true -Dquarkus.native.container-build=true -Pnative
+```
+- We can run `./mvnw verify -DskipTests=true -Pnative` to verify that our native artifact was properly constructed
+- First, we'll create a docker image:
+```bash
+docker build -f src/main/docker/Dockerfile.native -t quarkus/quarkus-demo .
+```
+- Now, we can run the container using:
+```bash
+docker run -i --rm -p 8080:8080 quarkus/quarkus-demo
 ```
 
-## Packaging and running the application
+## Use Spring
 
-The application is packageable using `./mvnw package`.
-It produces the executable `quarkus-project-1.0-SNAPSHOT-runner.jar` file in `/target` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/lib` directory.
+- Add dependency of `quarkus-spring-web` to the pom
+```xml
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-spring-web</artifactId>
+    </dependency>
+```
 
-The application is now runnable using `java -jar target/quarkus-project-1.0-SNAPSHOT-runner.jar`.
-
-## Creating a native executable
-
-You can create a native executable using: `./mvnw package -Pnative`.
-
-Or you can use Docker to build the native executable using: `./mvnw package -Pnative -Dquarkus.native.container-build=true`.
-
-You can then execute your binary: `./target/quarkus-project-1.0-SNAPSHOT-runner`
-
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/building-native-image-guide .
+- Add a Restcontroller, 

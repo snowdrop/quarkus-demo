@@ -13,7 +13,6 @@ import javax.ws.rs.core.MediaType;
 
 //@Path("/hello")
 @RestController
-@RequestMapping("/hello")
 public class HelloApplication {
 
     /*
