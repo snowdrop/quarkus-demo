@@ -17,9 +17,10 @@ mvn io.quarkus:quarkus-maven-plugin:1.1.1.Final:create \
 ```bash
 ./mvnw compile quarkus:dev
 ```
-- Our REST endpoint should be exposed at `localhost:8080/hello`. Let's test it with the curl command
+- Our REST endpoint should be exposed at `localhost:8080/hello`. Let's test it with the `curl/httpie` command executed within another terminal
 ```bash
-http localhost:8080/hello
+curl localhost:8080/hello
+http -s solarized localhost:8080/hello
 ```
 - Demo about Hot reload ;-)
 - Create a new Java Class `HelloService`
@@ -55,14 +56,26 @@ greeting=Good morning
 ```java
 @ConfigProperty(name = "greeting")
 private String greeting;
+...
+public String politeHello(String name){
+    return greeting + ", " + name;
+}
 ```
-- We can easily package the application by running the following command
+- Fix the issue of the Test class to change the condition to validate
+```java
+.when().get("/hello/polite/redhat")
+.then()
+   .statusCode(200)
+   .body(is("Good afternoon, redhat"));
+```
+- We can easily `package` the application by running the following command to generate a uber jar file
 ```bash
-./mvnw package -DskipTests=true
+./mvnw package
+java -jar ./target/quarkus-rest-1.0-SNAPSHOT-runner.jar
 ```
 - Build it natively (or using docker image) - optional step
 ```bash
-./mvnw package -DskipTests=true -Dquarkus.native.container-build=true -Pnative
+./mvnw package -Dquarkus.native.container-build=true -Pnative
 ```
 - We can run `./mvnw verify -DskipTests=true -Pnative` to verify that our native artifact was properly constructed
 - First, we'll create a docker image:
@@ -108,12 +121,19 @@ public class HelloApplication {
 @RequestMapping("/hello")
 public class HelloApplication {
 ``` 
-- Wired the `HelloService` bean
+- Change the method to use the Spring annotations : `@GetMapping`, `@PathVariable`
 ```java
-@Autowired
-HelloService helloService;
+@GetMapping("/{name}")
+public String greeting(@PathVariable("name") String name) {
+    return "Hello, " + name;
+}
 ```
-- Revisit the method `greeting` to map the path `/{}` and get the `PathVariable`
+- Test it
+```bash
+curl localhost:8080/hello/charles
+http -s solarized localhost:8080/hello/charles
+```
+- Revisit the method `greeting` to map the path of the name id `/{name}` and get the `@PathVariable`
 ```java
 @GetMapping("/{name}")
 public HelloService.Greeting greeting(@PathVariable("name") String idName) {
@@ -146,12 +166,16 @@ public class HelloService {
     @Value("${greeting}")
     private String greeting;
 ```
-- Consume the Greeting setter field from the Greeting class
+- Wire the `HelloService` bean
 ```java
-
-    public HelloService.Greeting politeHello(String name){
-        return new HelloService.Greeting(greeting + ", " + name);
-    }
+@Autowired
+HelloService helloService;
+```
+- and consume the `Greeting setter field` from the Greeting class
+```java
+ public HelloService.Greeting politeHello(String name){
+     return new HelloService.Greeting(greeting + ", " + name);
+ }
 ```
 - compile the project and test it 
 ```bash
