@@ -1,12 +1,15 @@
 ## Cool Quarkus demo
 
+- Move within a terminal to the folder where you will play the scenario
+```bash
+cd /Users/dabou/Temp/quarkus/demo
+```
 - Steps to execute to create the Quarkus REST project
 ```bash
-mkdir demo && cd demo
 mvn io.quarkus:quarkus-maven-plugin:1.1.1.Final:create \
     -DprojectGroupId=dev.snowdrop.quarkus \
     -DprojectArtifactId=quarkus-rest \
-    -DclassName="dev.snowdrop.quarkus.HelloResource" \
+    -DclassName="dev.snowdrop.quarkus.HelloApplication" \
     -Dpath="/hello"
 ```
 - Move to the project. Rename the java class to `HelloApplication` and explore the Java class created

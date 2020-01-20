@@ -3,6 +3,7 @@
 .classpath
 .settings/
 bin/
+quarkus-rest/
 
 # IntelliJ
 .idea/
