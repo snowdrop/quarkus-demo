@@ -12,7 +12,7 @@ mvn io.quarkus:quarkus-maven-plugin:1.1.1.Final:create \
     -DclassName="dev.snowdrop.quarkus.HelloApplication" \
     -Dpath="/hello"
 ```
-- Move to the project. Rename the java class to `HelloApplication` and explore the Java class created
+- Move to the project. Explore the Java class created
 - Launch it 
 ```bash
 ./mvnw compile quarkus:dev
