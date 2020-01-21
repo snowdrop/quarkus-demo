@@ -1,4 +1,14 @@
-## Cool Quarkus demo
+# Cool Quarkus demo
+
+The purpose of this demo is to showcase how you can :
+
+- Create a new Quarkus project using a maven archetype
+- Build/Run the project locally and call the endpoint
+- Play with hot reload feature
+- Use Spring technology instead of Java Microprofile
+- Deploy and run your project on a kubernetes cluster
+
+## Create a Quarkus REST project
 
 - Move within a terminal to the folder where you will play the scenario
 ```bash
