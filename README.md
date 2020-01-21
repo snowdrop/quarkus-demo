@@ -8,8 +8,7 @@ The purpose of this demo is to showcase how you can :
 - Use Spring technology instead of Java Microprofile
 - Deploy and run your project on a kubernetes cluster
 
-Table of Contents
-=================
+## Table of Contents
 
   * [Create a Quarkus REST project](#create-a-quarkus-rest-project)
   * [Jump to Spring on Quarkus now](#jump-to-spring-on-quarkus-now)
