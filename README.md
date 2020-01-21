@@ -248,3 +248,13 @@ Set-Cookie: aaebe0aa5dce9bfc0f50f192e0fe0810=0504a63f890d9931c1aeeb5e22b80db4; p
     "message": "Good afternoon 2, Red%20Hat"
 }
 ```
+- To test changes, execute the following command after every file's code changed
+```bash
+hal component push -c quarkus-rest-1
+```
+- To clean the project, simply delete the component
+```bash
+hal component delete quarkus-rest-1
+? Really delete 'quarkus-rest-1' component Yes
+ ✓  Successfully deleted 'quarkus-rest-1' component
+```
