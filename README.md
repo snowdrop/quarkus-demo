@@ -106,12 +106,14 @@ docker run -i --rm -p 8080:8080 quarkus/quarkus-demo
 ## Jump to Spring on Quarkus now
 
 - Add to the pom.xml file, the `Spring Web` dependency, quarkus extension to use Spring CDI and Web starter
-```xml
-<dependency>
-  <groupId>io.quarkus</groupId>
-  <artifactId>quarkus-spring-web</artifactId>
-</dependency>
-```
+  ```xml
+  <dependency>
+    <groupId>io.quarkus</groupId>
+    <artifactId>quarkus-spring-web</artifactId>
+  </dependency>
+  ```
+  **NOTE** : You can also add the extension ot the pom using the quarkus maven goal `mvn quarkus:add-extension -Dextensions="spring-web`
+  
 - We will now revisit the code to use Spring `Annotations`
 - Comment within the class `HelloApplication`, all the Java REST annotations
 ```java
