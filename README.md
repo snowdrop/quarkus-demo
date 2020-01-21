@@ -6,7 +6,7 @@ The purpose of this demo is to showcase how you can :
 - Build/Run the project locally and call the endpoint
 - Play with hot reload feature
 - Use Spring technology instead of Java Microprofile
-- Deploy and run your project on a kubernetes cluster
+- Deploy and run your project on a kubernetes cluster using Halkyon operator and hal client
 
 ## Table of Contents
 
