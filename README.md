@@ -181,3 +181,54 @@ HelloService helloService;
 ```bash
 ./mvnw clean package quarkus:dev
 ```
+
+## Deploy on K8s/OpenShift
+
+- To deploy our application on K8s, we will use the `halkyon` project with its `hal` tool
+- First, create a component to deploy the project on the cluster
+```bash
+hal component create quarkus-rest-1 
+? Runtime quarkus
+? Version 1.1.1.Final
+? Expose microservice Yes
+? Port 8080
+? Use code generator (Y/n) n
+```
+- If the component is created correctly, you will see this message
+```bash
+❯ Selected Name: quarkus-rest-1
+ ✓  Successfully created 'quarkus-rest-1' component
+```
+- Check if the component exists 
+```bash
+oc get component -n quarkus-demo
+NAME             RUNTIME   VERSION       AGE   MODE   STATUS   MESSAGE                                                        REVISION
+quarkus-rest-1   quarkus   1.1.1.Final   50m   dev    Ready    Ready: 'PodName' changed to 'quarkus-rest-1-7856dbf6d-lmrpg'   d9ac140d2dbcd6d60167ff8f14e6994a03bf2b7b  
+```
+
+- Next push the code of the project and wait a few moment till it will compiled
+```bash
+hal component push -c quarkus-rest-1
+Local changes detected for 'quarkus-rest-1' component: about to push source code to remote cluster
+ ✓  Uploading /Users/dabou/Temp/quarkus/demo/quarkus-rest-1.tar
+ ✓  Cleaning up component
+ ✓  Extracting source on the remote cluster
+ ✓  Performing build
+ ✓  Restarting app
+ ✓  Successfully pushed 'quarkus-rest-1' component to remote cluster
+```
+- Find the `Route` to call the endpoint 
+```bash
+export host=$( kc get route/quarkus-rest-1 -o jsonpath='{.spec.host}')
+http -s solarized http://$host/hello/'Red Hat'
+
+HTTP/1.1 200 OK
+Cache-control: private
+Content-Length: 41
+Content-Type: application/json
+Set-Cookie: aaebe0aa5dce9bfc0f50f192e0fe0810=0504a63f890d9931c1aeeb5e22b80db4; path=/; HttpOnly
+
+{
+    "message": "Good afternoon 2, Red%20Hat"
+}
+```
