@@ -260,3 +260,15 @@ hal component delete quarkus-rest-1
 ? Really delete 'quarkus-rest-1' component Yes
  ✓  Successfully deleted 'quarkus-rest-1' component
 ```
+
+## TODO
+
+- Test the demo using the quarkus maven archetype for `spring-web`
+  ```bash
+  mvn io.quarkus:quarkus-maven-plugin:1.1.1.Final:create \
+      -DprojectGroupId=org.acme \
+      -DprojectArtifactId=spring-web-quickstart \
+      -DclassName="org.acme.spring.web.GreetingController" \
+      -Dpath="/greeting" \
+      -Dextensions="spring-web"
+  ```
