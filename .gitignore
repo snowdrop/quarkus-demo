@@ -3,7 +3,7 @@
 .classpath
 .settings/
 bin/
-projects/
+quarkus-*/
 
 # IntelliJ
 .idea/
