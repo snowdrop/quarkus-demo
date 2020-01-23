@@ -10,6 +10,7 @@ the Dev Experience one ;-)
 ## JPA 
 
 - [JPA and Fruits](https://github.com/snowdrop/spring-quarkus-fruits)
+- [Greetings and Books](https://github.com/snowdrop/spring-quarkus-demo1)
 
 ## Serverless 
 
