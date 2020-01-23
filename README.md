@@ -1,20 +1,19 @@
-# Cool Quarkus demo
+# Cool Quarkus demos
 
-The purpose of this demo is to showcase how you can :
+The purpose of this project is to list ou cool Quarkus (Spring) demos including also the Dev Experience part ;-)
+
+## Table of Contents
+
+
+# Quarkus REST Endpoint
+
+the goal of this demo is to showcase how you can :
 
 - Create a new Quarkus project using a maven archetype
 - Build/Run the project locally and call the endpoint
 - Play with hot reload feature
 - Use Spring technology instead of Java Microprofile
 - Deploy and run your project on a kubernetes cluster using Halkyon operator and hal client
-
-## Table of Contents
-
-  * [Create a Quarkus REST project](#create-a-quarkus-rest-project)
-  * [Jump to Spring on Quarkus now](#jump-to-spring-on-quarkus-now)
-  * [Deploy on K8s/OpenShift](#deploy-on-k8sopenshift)
-  * [And what about Spring JPA](#and-what-about-spring-jpa)
-  * [TODO](#todo)
 
 ## Create a Quarkus REST project
 
