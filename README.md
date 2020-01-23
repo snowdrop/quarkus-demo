@@ -20,7 +20,7 @@ The purpose of this demo is to showcase how you can :
 
 - Move within a terminal to the folder where you will play the scenario
 ```bash
-cd /Users/dabou/Temp/quarkus/demo
+cd ~/Temp/demo
 ```
 - Steps to execute to create the Quarkus REST project
 ```bash
@@ -30,7 +30,7 @@ mvn io.quarkus:quarkus-maven-plugin:1.1.1.Final:create \
     -DclassName="dev.snowdrop.HelloApplication" \
     -Dpath="/hello"
 ```
-- Move to the project. Explore the Java class created
+- Move to the project created and explore the `Java class` created
 - Launch it 
 ```bash
 ./mvnw compile quarkus:dev
