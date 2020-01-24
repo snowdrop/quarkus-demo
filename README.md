@@ -5,7 +5,7 @@ the Dev Experience one ;-)
 
 ## Slides
 
-- Tech Day Brussels Jan 24: https://docs.google.com/presentation/d/1FneNIbabv7KE18qpPWYTk16szxbXD2_n7tQtFnfILk0/export/pdf
+- Red Hat Tech Day Brussels - Jan 24 2020 https://docs.google.com/presentation/d/1FneNIbabv7KE18qpPWYTk16szxbXD2_n7tQtFnfILk0/export/pdf
 
 ## REST
 
