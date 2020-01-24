@@ -1,4 +1,4 @@
-# Cool Quarkus demos
+# Cool Quarkus (Spring) demos
 
 The purpose of this project is to list the cool Quarkus (Spring) demos including also
 the Dev Experience one ;-)
